@@ -15,6 +15,7 @@ const displayData = (Dataobject) => {
         ulSel.appendChild(creLi);
     });
 }
+
 const valId = (idName, catagoryName) => {
     spinnerFun(true);
     fetch(`https://openapi.programming-hero.com/api/news/category/${idName}`)
@@ -26,8 +27,8 @@ const displayof = (data, catName) => {
     const inerBdy = document.getElementById('innerBody');
     const nodata = document.getElementById('NoData');
     inerBdy.innerHTML = ``;
-    const resSel = document.getElementById('result');
-    resSel.innerText = `${arrLen} items found for category ${catName}`
+    const result1 = document.getElementById('result');
+    result1.innerText = `${arrLen} items found for category ${catName}`
     if (arrLen === 0) {
         nodata.innerText = 'No data';
         nodata.classList.remove('d-none');
