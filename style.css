@@ -1,5 +1,7 @@
 .nav-style{
     list-style-type: none;
+    display: flex;
+    gap: 4px;
 }
 li{
     background-color:aquamarine;
@@ -15,21 +17,16 @@ li:hover{
     color: white;
     border: 3px solid gray;
 }
-@media (max-width: 768px) {
-    .navbar-nav {
+@media (max-width: 770px) {
+    .nav-style{
         list-style-type: none;
         padding: 0;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-wrap: nowrap;
+        flex-direction: column; 
     }
 }
-
 .signboard {
-    /* (B1) SIZING */
     width:100%;
-    /* (B3) BORDER */
     border: 1px solid #00e1ff;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
   }
