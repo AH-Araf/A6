@@ -1,18 +1,18 @@
-const dataLoad = async () => {
+const loadData1 = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     const res = await fetch(url);
     const data = await res.json();
-    displayData(data.data);
+    displayDataWeb(data.data);
 }
-const displayData = (Dataobject) => {
+const displayDataWeb = (Dataobject) => {
     Dataobject.news_category.forEach(element => {
-        const ulSel = document.getElementById('ul-li');
+        const ulEle = document.getElementById('ul-li');
         const creLi = document.createElement('li');
-        creLi.classList.add('nav-item');
+        creLi.classList.add('navbar-items');
         creLi.innerHTML = `
         <a onclick="valId('${element.category_id}','${element.category_name}')" class="nav-link" href="#">${element.category_name}</a>
         `
-        ulSel.appendChild(creLi);
+        ulEle.appendChild(creLi);
     });
 }
 
@@ -108,4 +108,4 @@ const spinnerFun = isTrue => {
         spinId.classList.add('d-none');
     }
 }
-dataLoad();
+loadData1();
