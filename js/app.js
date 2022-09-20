@@ -29,7 +29,11 @@ const displayof = (data, catName) => {
     const result1 = document.getElementById('result');
     result1.innerText = `${arrLength} items found for category ${catName}`
     if (arrLength === 0) {
-        data1.innerText = 'No News';
+        data1.innerHTML = `
+        <div class="text-dark py-4 bg-info border border-5 border-dark rounded-4">
+           <h1>No News</h1>
+        </div>
+        `;
         data1.classList.remove('d-none');
     }
     else {
