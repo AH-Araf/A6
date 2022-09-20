@@ -7,12 +7,12 @@ const loadData1 = async () => {
 const displayDataWeb = (Dataobject) => {
     Dataobject.news_category.forEach(element => {
         const ulEle = document.getElementById('ul-li');
-        const creLi = document.createElement('li');
-        creLi.classList.add('navbar-items');
-        creLi.innerHTML = `
+        const createLi = document.createElement('li');
+        createLi.classList.add('navbar-items');
+        createLi.innerHTML = `
         <a onclick="valId('${element.category_id}','${element.category_name}')" class="nav-link" href="#">${element.category_name}</a>
         `
-        ulEle.appendChild(creLi);
+        ulEle.appendChild(createLi);
     });
 }
 
@@ -23,15 +23,15 @@ const valId = (idName, catagoryName) => {
         .then(data => displayof(data.data, catagoryName))
 }
 const displayof = (data, catName) => {
-    const arrLen = data.length;
-    const inerBdy = document.getElementById('innerBody');
-    const nodata = document.getElementById('NoData');
-    inerBdy.innerHTML = ``;
+    const arrLength = data.length;
+    const innerBody = document.getElementById('bodyPart');
+    const data1 = document.getElementById('Data');
+    innerBody.innerHTML = ``;
     const result1 = document.getElementById('result');
-    result1.innerText = `${arrLen} items found for category ${catName}`
-    if (arrLen === 0) {
-        nodata.innerText = 'No data';
-        nodata.classList.remove('d-none');
+    result1.innerText = `${arrLength} items found for category ${catName}`
+    if (arrLength === 0) {
+        data1.innerText = 'No News';
+        data1.classList.remove('d-none');
     }
     else {
         data.sort((a, b) => a.total_view - b.total_view);
@@ -39,10 +39,10 @@ const displayof = (data, catName) => {
         data.forEach((e) => {
             newArr = newArr.concat(e);
         });
-        nodata.classList.add('d-none');
+        data1.classList.add('d-none');
         newArr.forEach(element => {
-            const creDiv = document.createElement('div');
-            creDiv.innerHTML = `<div class="card mb-3">
+            const createDivs = document.createElement('div');
+            createDivs.innerHTML = `<div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="${element.thumbnail_url}" class="img-fluid rounded-start" alt="...">
@@ -80,7 +80,7 @@ const displayof = (data, catName) => {
                     </div>
                 </div>
             </div>`
-            inerBdy.appendChild(creDiv);
+            innerBody.appendChild(createDivs);
         });
     }
     spinnerFun(false);
