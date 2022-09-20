@@ -15,9 +15,8 @@ const displayDataWeb = (Dataobject) => {
         ulEle.appendChild(createLi);
     });
 }
-
 const valId = (idName, catagoryName) => {
-    spinnerFun(true);
+    AddSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/news/category/${idName}`)
         .then(res => res.json())
         .then(data => displayof(data.data, catagoryName))
@@ -34,13 +33,14 @@ const displayof = (data, catName) => {
         data1.classList.remove('d-none');
     }
     else {
-        data.sort((a, b) => a.total_view - b.total_view);
-        let newArr = [];
+        //sorting highest to lowest view
+        data.sort((a, b) => b.total_view - a.total_view);
+        let newArray = []; 
         data.forEach((e) => {
-            newArr = newArr.concat(e);
+            newArray = newArray.concat(e);
         });
         data1.classList.add('d-none');
-        newArr.forEach(element => {
+        newArray.forEach(element => {
             const createDivs = document.createElement('div');
             createDivs.innerHTML = `<div class="card mb-3">
                 <div class="row g-0">
@@ -49,8 +49,8 @@ const displayof = (data, catName) => {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${element.title}</h5>
-                            <p class="card-text">${element.details.slice(0, 200)}...</p>
+                            <h4 class="card-title">${element.title}</h4>
+                            <p class="card-text">${element.details.slice(0, 200)}...</p> <br><br>
                             <div class = "d-flex justify-content-between">
                                 <div class = "d-flex">
                                     <div class = "px-2">
@@ -62,7 +62,6 @@ const displayof = (data, catName) => {
                                 <div>
                                 </div>
                                 </div>
-        
                                 <div>
                                 <i class="fa-regular fa-eye"></i>
                                 <div>
@@ -83,25 +82,24 @@ const displayof = (data, catName) => {
             innerBody.appendChild(createDivs);
         });
     }
-    spinnerFun(false);
+    AddSpinner(false);
 }
-
 const arrowSym = eleId => {
     fetch(`https://openapi.programming-hero.com/api/news/${eleId}`)
         .then(res => res.json())
         .then(data => getDet(data.data))
 }
 const getDet = detDat => {
-    const modalId = document.getElementById('exampleModalLabel');
+    const modalId = document.getElementById('Modal-Open');
     modalId.innerText = detDat[0].title;
     const modalIdBd = document.getElementById('modal-body');
     modalIdBd.innerHTML = `
     <p> ${detDat[0].details} </p>
 `
 }
-const spinnerFun = isTrue => {
+const AddSpinner = isTrueVal => {
     const spinId = document.getElementById('spinner');
-    if (isTrue) {
+    if (isTrueVal) {
         spinId.classList.remove('d-none');
     }
     else {
